@@ -1,7 +1,7 @@
 import React from 'react'
 
-const ShowCommentsButton = () => {
-    return (<button>Show Comments</button>)
+const ShowCommentsButton = (props) => {
+    return (<button>Show Comments ({props.num})</button>)
 }
 
 export default ShowCommentsButton

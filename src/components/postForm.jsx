@@ -10,7 +10,7 @@ class PostForm extends React.Component {
             <label htmlFor="postcomment">Write your post</label>
             <br/>
             <textarea name="postcomment"/>
-            <button type="submit"/>
+            <button type="submit">Submit post</button>
         </form>)
     }
 }

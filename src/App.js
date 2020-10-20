@@ -17,7 +17,8 @@ class App extends React.Component {
         <Header />
         <NavBar />
         <Router>
-          <ArticleList path='/articles' />
+          <ArticleList path='/' />
+          <ArticleList path='/articles/*' />
         </Router>
 
       </div>

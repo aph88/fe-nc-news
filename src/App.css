@@ -1,7 +1,5 @@
-.App {
-  text-align: center;
-}
-
-.app-articlelist-article {
-  display: flex;
+.articlelist-article {
+  border: 1px;
+  border-style: dotted;
+  margin: 2px;
 }
