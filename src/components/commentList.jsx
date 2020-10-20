@@ -12,7 +12,7 @@ class CommentList extends React.Component {
             <div>
                 <p>Listing comments</p>
                 {this.state.article.comments.map(comment => {
-                    return (<Comment/>)
+                    return (<Comment key={comment}/>)
                 }
                 )}
             </div>
