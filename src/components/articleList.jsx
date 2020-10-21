@@ -9,7 +9,11 @@ class ArticleList extends React.Component {
     }
 
     componentDidMount () {
-        axios.get('https://aph88-nc-news.herokuapp.com/api/articles').then((res) => {
+        let topic = ''
+        if(this.props['*']) topic = this.props['*'].split('/')[0]
+        console.log(topic)
+        const params = {topic: topic}
+        axios.get('https://aph88-nc-news.herokuapp.com/api/articles', {params}).then((res) => {
             this.setState({
                 articles: [...res.data.articles]
             })
@@ -17,10 +21,14 @@ class ArticleList extends React.Component {
     }
 
     componentDidUpdate (prevProps, prevState) {
-        console.log(this.props.location.pathname, 'now')
-        console.log(prevProps.location.pathname,'then')
-        if (prevProps.location.pathname !== this.props.location.pathname){
-            axios.get(`https://aph88-nc-news.herokuapp.com/api/articles?topic=${this.props['*']}`).then((res) => {
+        // console.log(this.props['*'], 'props now')
+        // console.log(prevProps['*'],'props then')
+        let topic = ''
+        if(this.props['*']) topic = this.props['*'].split('/')[0]
+        console.log(topic)
+        const params = {topic: topic}
+        if (prevProps['*'] !== this.props['*'] || prevProps.path !== this.props.path){
+            axios.get(`https://aph88-nc-news.herokuapp.com/api/articles`, {params}).then((res) => {
                 this.setState({
                     articles: [...res.data.articles]
                 })
@@ -36,7 +44,7 @@ class ArticleList extends React.Component {
                         return (
                             <div key={art.article_id} className="articlelist-article">
                                 
-                                    <Link to={`/articles/${art.article_id}`}>
+                                    <Link to={`/articles/${art.topic}/${art.article_id}`}>
                                     <h4>{art.title}</h4>
                                     </Link>
                                 <p>{`Created at: ${art.created_at}, by: ${art.author}, Votes: ${art.votes} Comments: ${art.comment_count}`}</p>

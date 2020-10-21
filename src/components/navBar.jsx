@@ -1,21 +1,9 @@
 import { navigate } from '@reach/router'
 import React from 'react'
-import axios from 'axios'
 
 class NavBar extends React.Component {
 
-    state = {
-        topics: [{slug: '', description: 'Everything on anything!'}]      
-    }   
-    
-    componentDidMount () {
-        axios.get('https://aph88-nc-news.herokuapp.com/api/topics').then(({data: {topics}}) => {
-            topics.unshift({slug: '', description: 'Everything on anything!'})
-            this.setState({
-                topics: topics
-            })
-        })        
-    }
+ 
 
     changePage = (event) => {
         const page = event.target.value;
@@ -23,9 +11,10 @@ class NavBar extends React.Component {
     }
 
     render () {
-        return (<nav>
-               <select onChange={this.changePage}>                      
-            {this.state.topics.map(topic => {
+    return (<nav>
+               <select onChange={this.changePage} defaultValue='Please select a topic'>                      
+                <option disabled={true}>Please select a topic</option>
+            {this.props.topics.map(topic => {
                 return(
                     <option value={topic.slug} key={topic.slug}>{topic.slug === '' ? 'articles' : topic.slug}</option>                                    
                 )    
