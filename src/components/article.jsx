@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import ShowCommentsButton from './showCommentsButton'
 import ShowPostFormButton from './showPostFormButton'
 import Vote from './vote'
 import CommentList from './commentList'
@@ -9,7 +8,7 @@ import PostForm from './postForm'
 class ArticleBody extends React.Component {
 state = {
     article: {},
-    show: true
+    loaded: false
 }
 
 componentDidMount () {
@@ -18,7 +17,7 @@ componentDidMount () {
         const article = res.data.article
         this.setState({
                 article: article,
-                show: true
+                loaded: true
             })
 
     }    
@@ -29,10 +28,9 @@ render () {
     return (<div>
         <Vote/>
         <p>{this.state.article.body}</p>
-        <ShowCommentsButton num={this.state.article.comment_count}/>
         <ShowPostFormButton/>
-        <PostForm/>        
-        <CommentList id={this.state.article.article_id}/>
+        <PostForm/>
+        {(this.state.loaded) ? <CommentList num={this.state.article.comment_count} art_id={this.state.article.article_id}/> : null}        
         </div>)
     }
 }

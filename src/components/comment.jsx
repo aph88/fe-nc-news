@@ -1,10 +1,11 @@
 import React from 'react'
 import Vote from './vote'
 
-const Comment = () => {
+const Comment = (props) => {
     return (
         <div>
-            <p>Comment goes here</p>
+            <h4>{`Author: ${props.comment.author}, Created at: ${props.comment.created_at}, Votes: ${props.comment.votes}`}</h4>
+            <p>{props.comment.body}</p>
             <Vote/>
         </div>
     )

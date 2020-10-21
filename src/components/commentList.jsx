@@ -4,28 +4,37 @@ import axios from 'axios'
 
 class CommentList extends React.Component {
     state = {
-        article: {comments: []}
+        comments: [],
+        visible: false
 
     }
 
     componentDidMount () {
-        console.log(this.props)
-        axios.get(`https://aph88-nc-news.herokuapp.com/api/articles/${this.props.id}/comments`).then((res) => {
+        axios.get(`https://aph88-nc-news.herokuapp.com/api/articles/${this.props.art_id}/comments`).then((res) => {
         const comments = res.data.comments;    
         this.setState({
-                comments: comments 
+                comments: comments,
             })
+        })
+    }
+
+    showComments = () => {
+        this.setState((prevState) => {
+            const visible = !prevState.visible
+            return {visible}
         })
     }
 
     render () {
         return (
             <div>
-                <p>Listing comments</p>
-                {this.state.article.comments.map(comment => {
-                    return (<Comment key={comment}/>)
+                <button onClick={this.showComments}>{this.state.visible ? 
+                'hide comments': 'show comments'} ({this.props.num})</button>
+
+                {(this.state.visible) ? this.state.comments.map(comment => {
+                    return (<Comment key={comment.comment_id} comment={comment}/>)
                 }
-                )}
+                ) : null}
             </div>
         )
     }

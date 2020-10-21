@@ -10,7 +10,6 @@ class ArticleList extends React.Component {
 
     componentDidMount () {
         axios.get('https://aph88-nc-news.herokuapp.com/api/articles').then((res) => {
-            console.log(res.data.articles)
             this.setState({
                 articles: [...res.data.articles]
             })
@@ -18,9 +17,10 @@ class ArticleList extends React.Component {
     }
 
     componentDidUpdate (prevProps, prevState) {
+        console.log(this.props.location.pathname, 'now')
+        console.log(prevProps.location.pathname,'then')
         if (prevProps.location.pathname !== this.props.location.pathname){
             axios.get(`https://aph88-nc-news.herokuapp.com/api/articles?topic=${this.props['*']}`).then((res) => {
-                console.log(res.data.articles)
                 this.setState({
                     articles: [...res.data.articles]
                 })
@@ -30,7 +30,6 @@ class ArticleList extends React.Component {
     }
 
     render () {
-        console.log(this.props)
         return (<section>
             <h3>Listing Articles:</h3>
         {this.state.articles.map(art => {
