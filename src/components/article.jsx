@@ -26,6 +26,8 @@ componentDidMount () {
 
 render () {
     return (<div>
+        <h4>{this.state.article.title}</h4>
+        <p>{`Created at: ${this.state.article.created_at}, by: ${this.state.article.author}, Votes: ${this.state.article.votes} Comments: ${this.state.article.comment_count}`}</p>
         <Vote/>
         <p>{this.state.article.body}</p>
         <ShowPostFormButton/>

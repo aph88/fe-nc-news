@@ -5,6 +5,7 @@ import Header from './components/header';
 import NavBar from './components/navBar';
 import { Router } from '@reach/router';
 import axios from 'axios';
+import Article from './components/article'
 
 class App extends React.Component {
 
@@ -37,6 +38,7 @@ class App extends React.Component {
         <Router>
           <ArticleList path='/' />
           <ArticleList path='/articles/*' />
+          <Article path='/articles/:topic/:article_id' />
         </Router>
 
       </div>

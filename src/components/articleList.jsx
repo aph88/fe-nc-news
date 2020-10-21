@@ -30,7 +30,6 @@ class ArticleList extends React.Component {
                 })
             })
         }
-         
     }
 
     render () {
@@ -45,9 +44,6 @@ class ArticleList extends React.Component {
                                     <h4>{art.title}</h4>
                                     </Link>
                                 <p>{`Created at: ${art.created_at}, by: ${art.author}, Votes: ${art.votes} Comments: ${art.comment_count}`}</p>
-                                
-
-                    
                             </div>            
             )
         })}
