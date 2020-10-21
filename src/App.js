@@ -10,7 +10,7 @@ class App extends React.Component {
 
   state = {
     topics: [{ slug: '', description: 'Everything on anything!' }],
-
+    params: {}
   }
 
   componentDidMount() {
@@ -22,14 +22,18 @@ class App extends React.Component {
     })
   }
 
-
+  changeOrderSort = () => {
+    console.log('CHANGING ORDER!!!!')
+    this.setState({
+      params: ''
+    })
+  }
 
   render() {
     return (
       <div className="App">
         <Header />
-
-        <NavBar topics={this.state.topics} />
+        <NavBar topics={this.state.topics} changeOrderSort={this.changeOrderSort} />
         <Router>
           <ArticleList path='/' />
           <ArticleList path='/articles/*' />

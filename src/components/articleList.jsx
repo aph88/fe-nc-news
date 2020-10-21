@@ -11,7 +11,6 @@ class ArticleList extends React.Component {
     componentDidMount () {
         let topic = ''
         if(this.props['*']) topic = this.props['*'].split('/')[0]
-        console.log(topic)
         const params = {topic: topic}
         axios.get('https://aph88-nc-news.herokuapp.com/api/articles', {params}).then((res) => {
             this.setState({
@@ -21,11 +20,8 @@ class ArticleList extends React.Component {
     }
 
     componentDidUpdate (prevProps, prevState) {
-        // console.log(this.props['*'], 'props now')
-        // console.log(prevProps['*'],'props then')
         let topic = ''
         if(this.props['*']) topic = this.props['*'].split('/')[0]
-        console.log(topic)
         const params = {topic: topic}
         if (prevProps['*'] !== this.props['*'] || prevProps.path !== this.props.path){
             axios.get(`https://aph88-nc-news.herokuapp.com/api/articles`, {params}).then((res) => {
@@ -34,12 +30,13 @@ class ArticleList extends React.Component {
                 })
             })
         }
-        
+         
     }
 
     render () {
+        //                                <ArticleBody article_id={art.article_id}/>
         return (<section>
-            <h3>Listing Articles:</h3>
+            <h3>{(this.props['*'] === '' || this.props['*'] === undefined) ? 'Listing articles' : `Listing articles for ${this.props['*']}`}</h3>
         {this.state.articles.map(art => {
                         return (
                             <div key={art.article_id} className="articlelist-article">
@@ -49,10 +46,9 @@ class ArticleList extends React.Component {
                                     </Link>
                                 <p>{`Created at: ${art.created_at}, by: ${art.author}, Votes: ${art.votes} Comments: ${art.comment_count}`}</p>
                                 
-                                <ArticleBody article_id={art.article_id}/>
+
                     
-                            </div>
-            
+                            </div>            
             )
         })}
         </section>)

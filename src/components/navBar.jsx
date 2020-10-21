@@ -21,6 +21,14 @@ class NavBar extends React.Component {
             }
             )}     
             </select>
+            <select onChange={this.props.changeOrderSort}>
+                <option>Date Created (Newest first)</option>
+                <option>Date Created (Oldest first)</option>
+                <option>Comments (Most first)</option>
+                <option>Comments (Least first)</option>
+                <option>Votes (Most first)</option>
+                <option>Votes (Least first)</option>
+            </select>
             </nav>)
     }
 
