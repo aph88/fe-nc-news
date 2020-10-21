@@ -37,7 +37,8 @@ class App extends React.Component {
         <NavBar topics={this.state.topics} changeOrderSort={this.changeOrderSort} />
         <Router>
           <ArticleList path='/' />
-          <ArticleList path='/articles/*' />
+          <ArticleList path='/articles/' />
+          <ArticleList path='/articles/:topic' />
           <Article path='/articles/:topic/:article_id' />
         </Router>
 
