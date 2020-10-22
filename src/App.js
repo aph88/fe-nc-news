@@ -11,7 +11,7 @@ class App extends React.Component {
 
   state = {
     topics: [{ slug: '', description: 'Everything on anything!' }],
-    params: {}
+    params: ''
   }
 
   componentDidMount() {
@@ -23,10 +23,9 @@ class App extends React.Component {
     })
   }
 
-  changeOrderSort = () => {
-    console.log('CHANGING ORDER!!!!')
+  changeOrderSort = (paramsText) => {
     this.setState({
-      params: ''
+      params: paramsText
     })
   }
 
@@ -36,9 +35,9 @@ class App extends React.Component {
         <Header />
         <NavBar topics={this.state.topics} changeOrderSort={this.changeOrderSort} />
         <Router>
-          <ArticleList path='/' />
-          <ArticleList path='/articles/' />
-          <ArticleList path='/articles/:topic' />
+          <ArticleList path='/' paramsText={this.state.params} />
+          <ArticleList path='/articles/' paramsText={this.state.params} />
+          <ArticleList path='/articles/:topic' paramsText={this.state.params} />
           <Article path='/articles/:topic/:article_id' />
         </Router>
 

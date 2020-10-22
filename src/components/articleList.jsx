@@ -9,6 +9,7 @@ class ArticleList extends React.Component {
     }
 
     componentDidMount () {
+        console.log(this.props.params)
         const params = {topic: this.props.topic}
         axios.get('https://aph88-nc-news.herokuapp.com/api/articles', {params}).then((res) => {
             const newArticles = [];
@@ -23,10 +24,16 @@ class ArticleList extends React.Component {
     }
 
     componentDidUpdate (prevProps, prevState) {
-        const params = {topic: this.props.topic}
-        if (prevProps.topic !== this.props.topic){
+        const params = {}
+        params.topic = this.props.topic
+        if (prevProps.topic !== this.props.topic || prevProps.paramsText !== this.props.paramsText){
+            const keyValuePairs = this.props.paramsText.split(':')
+            for (let i = 0; i < keyValuePairs.length; i += 2) {
+              params[keyValuePairs[i]] = keyValuePairs[i + 1]
+            }
             axios.get(`https://aph88-nc-news.herokuapp.com/api/articles`, {params}).then((res) => {
-                const newArticles = [];
+            console.log(params)
+            const newArticles = [];
                 res.data.articles.forEach((article, i) => {
                     newArticles.push({...article});
                     newArticles[i].show = false;

@@ -21,13 +21,17 @@ class NavBar extends React.Component {
             }
             )}     
             </select>
-            <select onChange={this.props.changeOrderSort}>
-                <option>Date Created (Newest first)</option>
-                <option>Date Created (Oldest first)</option>
-                <option>Comments (Most first)</option>
-                <option>Comments (Least first)</option>
-                <option>Votes (Most first)</option>
-                <option>Votes (Least first)</option>
+            <select onChange={(event) => {
+                const params = event.target.value;
+                this.props.changeOrderSort(params)
+
+                }}>
+                <option value="sort_by:created_at">Date Created (Newest first)</option>
+                <option value="sort_by:created_at:order:asc">Date Created (Oldest first)</option>
+                <option value="sort_by:comment_count">Comments (Most first)</option>
+                <option value="sort_by:comment_count:order:asc">Comments (Least first)</option>
+                <option value="sort_by:votes">Votes (Most first)</option>
+                <option value="sort_by:votes:order:asc">Votes (Least first)</option>
             </select>
             </nav>)
     }
