@@ -32,7 +32,7 @@ class CommentList extends React.Component {
                 'hide comments': 'show comments'} ({this.props.num})</button>
 
                 {(this.state.visible) ? this.state.comments.map(comment => {
-                    return (<Comment key={comment.comment_id} comment={comment}/>)
+                    return (<Comment key={comment.comment_id} comment={comment} user={this.props.user} />)
                 }
                 ) : null}
             </div>

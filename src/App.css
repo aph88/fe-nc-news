@@ -1,5 +1,29 @@
+.app {
+  background-color: #f5faf8;
+}
+
+.app-header {
+  background-color: #bb7880;
+  color: #f3f1f0;
+  font-size: 3vh;
+  text-align: center;
+}
+
+.articlelist {
+}
+
+.nav-bar {
+  text-align: center;
+}
+
 .articlelist-article {
   border: 1px;
-  border-style: dotted;
-  margin: 2px;
+  border-style: solid;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.comment-list-comment {
+  border: 1px;
+  border-style: dashed;
 }

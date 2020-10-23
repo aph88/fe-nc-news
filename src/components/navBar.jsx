@@ -1,9 +1,7 @@
 import { navigate } from '@reach/router'
 import React from 'react'
 
-class NavBar extends React.Component {
-
- 
+class NavBar extends React.Component { 
 
     changePage = (event) => {
         const page = event.target.value;
@@ -11,7 +9,7 @@ class NavBar extends React.Component {
     }
 
     render () {
-    return (<nav>
+    return (<nav className="nav-bar">
                <select onChange={this.changePage} defaultValue='Please select a topic'>                      
                 <option disabled={true}>Please select a topic</option>
             {this.props.topics.map(topic => {
