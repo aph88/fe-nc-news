@@ -1,6 +1,6 @@
 import React from 'react'
 import Vote from './vote'
-import axios from 'axios'
+import { deleteCommentAtAPI } from '../api'
 
 class Comment extends React.Component {
 
@@ -9,7 +9,7 @@ class Comment extends React.Component {
     }
 
     deleteComment = () => {
-        axios.delete(`https://aph88-nc-news.herokuapp.com/api/comments/${this.props.comment.comment_id}`).then((res) => {
+        deleteCommentAtAPI(this.props.comment.comment_id).then((res) => {
             this.setState({deleted: true})
         })
     }

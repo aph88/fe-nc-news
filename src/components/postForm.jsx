@@ -1,5 +1,5 @@
-import axios from 'axios'
 import React from 'react'
+import { postComment } from '../api';
 
 class PostForm extends React.Component {
     state = {
@@ -8,7 +8,7 @@ class PostForm extends React.Component {
 
     submitForm = (e) => {
         e.preventDefault();
-        axios.post(`https://aph88-nc-news.herokuapp.com/api/articles/${this.props.article_id}/comments`, {body: this.state.formtext, username: this.props.user}).then((res) => {
+        postComment(this.props.article_id, {body: this.state.formtext, username: this.props.user}).then((res) => {
             this.setState({formtext: ''})            
         })
     }
@@ -21,7 +21,6 @@ class PostForm extends React.Component {
     }
 
     render () {
-        console.log(this.state.formtext)
         return (<form onSubmit={this.submitForm}>
             <label htmlFor="postcomment">Write your post</label>
             <br/>

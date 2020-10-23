@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from '@reach/router'
-import axios from 'axios'
 import ArticleBody from './article'
+import { getAllArticles } from '../api'
 
 class ArticleList extends React.Component {
     state = {
@@ -9,9 +9,8 @@ class ArticleList extends React.Component {
     }
 
     componentDidMount () {
-        console.log(this.props.params)
         const params = {topic: this.props.topic}
-        axios.get('https://aph88-nc-news.herokuapp.com/api/articles', {params}).then((res) => {
+        getAllArticles(params).then((res) => {
             const newArticles = [];
             res.data.articles.forEach((article, i) => {
                 newArticles.push({...article});
@@ -33,7 +32,7 @@ class ArticleList extends React.Component {
                   params[keyValuePairs[i]] = keyValuePairs[i + 1]
                 }
             }
-            axios.get(`https://aph88-nc-news.herokuapp.com/api/articles`, {params}).then((res) => {
+            getAllArticles({params}).then((res) => {
             console.log(params)
             const newArticles = [];
                 res.data.articles.forEach((article, i) => {
@@ -76,7 +75,6 @@ class ArticleList extends React.Component {
     }
 
     render () {
-        console.log('rendering')
         return (
             <section>
             <h3>{(this.props['*'] === '' || this.props['*'] === undefined) ? 'Listing articles' : `Listing articles for ${this.props['*']}`}</h3>

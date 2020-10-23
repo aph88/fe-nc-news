@@ -1,9 +1,9 @@
 import React from 'react'
-import axios from 'axios'
 import Vote from './vote'
 import CommentList from './commentList'
 import PostForm from './postForm'
 import ArticleList from './articleList'
+import { getArticle, patchArticleVotes } from '../api'
 
 class ArticleBody extends React.Component {
 state = {
@@ -14,7 +14,7 @@ state = {
 }
 
 componentDidMount () {
-    axios.get(`https://aph88-nc-news.herokuapp.com/api/articles/${this.props.article_id}`).then((res) =>
+    getArticle(this.props.article_id).then((res) =>
     {
         const article = res.data.article
         this.setState({
@@ -27,7 +27,7 @@ componentDidMount () {
 
 componentDidUpdate (prevProps,prevState) {
     if(this.props.article_id !== prevProps.article_id){
-        axios.get(`https://aph88-nc-news.herokuapp.com/api/articles/${this.props.article_id}`).then((res) =>
+        getArticle(this.props.article_id).then((res) =>
         {
             const article = res.data.article
             this.setState({
@@ -39,13 +39,12 @@ componentDidUpdate (prevProps,prevState) {
 }
 
 voteOnArticle = (num) => {
-    console.log('Hello!')
     const newArticle = {...this.state.article}
     newArticle.votes += num;
     this.setState({
         article: {...newArticle}
     })
-    axios.patch(`https://aph88-nc-news.herokuapp.com/api/articles/${this.props.article_id}`, {inc_votes: num})
+    patchArticleVotes(this.props.article_id, {inc_votes: num}) 
 }
 
 togglePostForm = () => {
@@ -60,7 +59,7 @@ render () {
         <p>{`Created at: ${this.state.article.created_at}, by: ${this.state.article.author}, Votes: ${this.state.article.votes} Comments: ${this.state.article.comment_count}`}</p>
         <Vote updateVotes={this.voteOnArticle}/>
         <p>{this.state.article.body}</p>
-        <button onClick={this.togglePostForm}>{!this.state.postFormVisible ? 'Post a comment' : 'Hide post form'}</button>
+        <button className="btn" onClick={this.togglePostForm}>{!this.state.postFormVisible ? 'Post a comment' : 'Hide post form'}</button>
         {this.state.postFormVisible ? <PostForm article_id={this.props.article_id} user={this.state.user}/> : null}
         {(this.state.loaded) ? <CommentList num={this.state.article.comment_count} art_id={this.state.article.article_id} user={this.state.user}/> : null}        
         {this.props.path ? <ArticleList topic={this.state.article.topic}/> : null}

@@ -1,10 +1,10 @@
 .app {
-  background-color: #f5faf8;
+  margin: 0px;
 }
 
 .app-header {
-  background-color: #bb7880;
-  color: #f3f1f0;
+  background-color: #7d4f50ff;
+  color: #f9eae1ff;
   font-size: 3vh;
   text-align: center;
 }
@@ -14,16 +14,55 @@
 
 .nav-bar {
   text-align: center;
+  background-color: #aa998fff;
 }
 
 .articlelist-article {
   border: 1px;
   border-style: solid;
-  margin-bottom: 10px;
-  padding: 10px;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: #cc8b86ff;
+  -webkit-border-radius: 25;
+  -moz-border-radius: 25;
+  border-radius: 25px;
+}
+
+.articlelist-article:hover {
+  background: #7d4f50ff;
 }
 
 .comment-list-comment {
   border: 1px;
   border-style: dashed;
+}
+
+.btn {
+  background: #d1be9cff;
+  background-image: -webkit-linear-gradient(top, #d1be9cff, #cc8b86ff);
+  background-image: -moz-linear-gradient(top, #d1be9cff, #cc8b86ff);
+  background-image: -ms-linear-gradient(top, #d1be9cff, #cc8b86ff);
+  background-image: -o-linear-gradient(top, #d1be9cff, #cc8b86ff);
+  background-image: linear-gradient(to bottom, #d1be9cff, #cc8b86ff);
+  -webkit-border-radius: 25;
+  -moz-border-radius: 25;
+  border-radius: 25px;
+  -webkit-box-shadow: 4px 3px 8px #666666;
+  -moz-box-shadow: 4px 3px 8px #666666;
+  box-shadow: 4px 3px 8px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #cc8b86ff;
+  background-image: -webkit-linear-gradient(top, #cc8b86ff, #cc8b86ff);
+  background-image: -moz-linear-gradient(top, #cc8b86ff, #cc8b86ff);
+  background-image: -ms-linear-gradient(top, #cc8b86ff, #cc8b86ff);
+  background-image: -o-linear-gradient(top, #cc8b86ff, #cc8b86ff);
+  background-image: linear-gradient(to bottom, #cc8b86ff, #cc8b86ff);
+  text-decoration: none;
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import Comment from './comment'
-import axios from 'axios'
+import { getComments } from '../api'
 
 class CommentList extends React.Component {
     state = {
@@ -10,7 +10,7 @@ class CommentList extends React.Component {
     }
 
     componentDidMount () {
-        axios.get(`https://aph88-nc-news.herokuapp.com/api/articles/${this.props.art_id}/comments`).then((res) => {
+        getComments(this.props.art_id).then((res) => {
         const comments = res.data.comments;    
         this.setState({
                 comments: comments,
@@ -28,7 +28,7 @@ class CommentList extends React.Component {
     render () {
         return (
             <div>
-                <button onClick={this.showComments}>{this.state.visible ? 
+                <button className="btn" onClick={this.showComments}>{this.state.visible ? 
                 'hide comments': 'show comments'} ({this.props.num})</button>
 
                 {(this.state.visible) ? this.state.comments.map(comment => {
